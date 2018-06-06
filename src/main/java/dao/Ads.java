@@ -1,3 +1,7 @@
+package dao;
+
+import model.Ad;
+
 import java.util.List;
 
 public interface Ads {
@@ -5,4 +9,5 @@ public interface Ads {
     List<Ad> all();
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
+
 }
