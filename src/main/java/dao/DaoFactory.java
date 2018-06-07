@@ -1,4 +1,5 @@
 package dao;
+
 import config.Config;
 
 public class DaoFactory {

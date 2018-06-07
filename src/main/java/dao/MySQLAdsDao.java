@@ -11,13 +11,13 @@ import java.util.List;
 public class MySQLAdsDao implements Ads {
     private Connection connection = null;
 
-    public MySQLAdsDao(Config config){
+    public MySQLAdsDao(Config config) {
         try {
-        DriverManager.registerDriver(new Driver());
-        connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+            DriverManager.registerDriver(new Driver());
+            connection = DriverManager.getConnection(
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database.", e);
@@ -54,12 +54,12 @@ public class MySQLAdsDao implements Ads {
 
     private String createInsertQuery(Ad ad) {
         return "INSERT INTO ads(user_id, title, description) VALUES "
-                + "(" + ad.getUserId() +", "
-                + "'" + ad.getTitle() +"', "
+                + "(" + ad.getUserId() + ", "
+                + "'" + ad.getTitle() + "', "
                 + "'" + ad.getDescription() + "')";
     }
 
-    private List<Ad> createAds(ResultSet rs) throws SQLException{
+    private List<Ad> createAds(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
         while (rs.next()) {
             ads.add(requestAd(rs));
@@ -67,7 +67,7 @@ public class MySQLAdsDao implements Ads {
         return ads;
     }
 
-    private Ad requestAd(ResultSet rs) throws SQLException{
+    private Ad requestAd(ResultSet rs) throws SQLException {
         return new Ad(
                 rs.getLong("id"),
                 rs.getLong("user_id"),
